@@ -18,7 +18,6 @@ wsServer.on('request', function(request) {
   console.log('connection requested')
 
   var connection = request.accept(null, request.origin);
-  console.log(connection)
 
     var obj = {
              text: "message from server",
