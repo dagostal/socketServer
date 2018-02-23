@@ -16,7 +16,7 @@ wsServer = new WebSocketServer({
 // WebSocket server
 wsServer.on('request', function(request) {
   console.log('connection requested')
-  console.log(request.origin)
+
   var connection = request.accept(null, request.origin);
 
     var obj = {
@@ -30,8 +30,7 @@ wsServer.on('request', function(request) {
   // all messages from users here.
   connection.on('message', function(message) {
     console.log('message received!')
-
-
+    console.log(message)
   });
 
   connection.on('close', function(connection) {
