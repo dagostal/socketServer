@@ -28,13 +28,13 @@ wsServer.on('request', function(request) {
 
   // This is the most important callback for us, we'll handle
   // all messages from users here.
-  // connection.on('message', function(message) {
-  //   console.log('message received!')
+  connection.on('message', function(message) {
+    console.log('message received!')
 
-  //
-  // });
 
-  // connection.on('close', function(connection) {
-  //   // close user connection
-  // });
+  });
+
+  connection.on('close', function(connection) {
+    // close user connection
+  });
 });
