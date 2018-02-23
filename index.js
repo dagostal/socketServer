@@ -26,7 +26,8 @@ wsServer.on('request', function(request) {
   // all messages from users here.
   connection.on('message', function(message) {
     console.log('message received!')
-    console.log(message)
+    console.log(JSON.parse(message))
+    console.log(message.utf8Data)
 
         var obj = {
                  text: message,
