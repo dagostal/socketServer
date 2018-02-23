@@ -16,14 +16,15 @@ wsServer = new WebSocketServer({
 // WebSocket server
 wsServer.on('request', function(request) {
   console.log('connection requested')
-
+  console.log(request.origin)
   var connection = request.accept(null, request.origin);
 
     var obj = {
              text: "message from server",
            };
     var json = JSON.stringify({ type:'message', data: obj });
-  connection.sendUTF(json)
+
+    connection.sendUTF(json)
 
   // This is the most important callback for us, we'll handle
   // all messages from users here.
