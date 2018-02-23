@@ -2,6 +2,8 @@ var WebSocketServer = require('websocket').server;
 var http = require('http');
 var port = process.env.PORT
 
+var connections=[]
+
 var server = http.createServer(function(request, response) {
   // process HTTP request. Since we're writing just WebSockets
   // server we don't have to implement anything.
@@ -18,7 +20,7 @@ wsServer.on('request', function(request) {
   console.log('connection requested')
 
   var connection = request.accept(null, request.origin);
-
+  connection.push(connection)
 
   // This is the most important callback for us, we'll handle
   // all messages from users here.
@@ -27,11 +29,13 @@ wsServer.on('request', function(request) {
     console.log(message)
 
         var obj = {
-                 text: "nice to meet u, this is the server",
+                 text: message,
                };
         var json = JSON.stringify({ type:'message', data: obj });
 
-        connection.sendUTF(json)
+        connections.forEach((connect)=>{
+            connect.sendUTF(json)
+        })
   });
 
   connection.on('close', function(connection) {
