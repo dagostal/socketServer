@@ -5,7 +5,7 @@ var port = process.env.PORT
 var connections=[]
 var location={
   latitude:null,
-  longitutde:null
+  longitude:null
 }
 
 var server = http.createServer(function(request, response) {
@@ -32,11 +32,11 @@ wsServer.on('request', function(request) {
     console.log('message received!')
     console.log("current location --",location)
     console.log(message.utf8Data)
-    if(message.utf8Data.latitude!==location.latitude||message.utf8Data.longitutde!==location.longitutde) {
+    if(message.utf8Data.latitude!==location.latitude||message.utf8Data.longitude!==location.longitude) {
       console.log('location change')
       location={
         latitude:message.utf8Data.latitude,
-        longitutde:message.utf8Data.longitutde
+        longitutde:message.utf8Data.longitude
       }
 
         var obj = {
