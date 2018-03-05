@@ -3,6 +3,10 @@ var http = require('http');
 var port = process.env.PORT
 
 var connections=[]
+var location={
+  latitude:null,
+  longitutde:null
+}
 
 var server = http.createServer(function(request, response) {
   // process HTTP request. Since we're writing just WebSockets
@@ -27,6 +31,7 @@ wsServer.on('request', function(request) {
   connection.on('message', function(message) {
     console.log('message received!')
     console.log(message.utf8Data)
+    if(message.utfData.latitude!==location.latitude||message.utfData.longitutde!==location.longitutde) {
 
         var obj = {
                  text: message,
@@ -36,6 +41,7 @@ wsServer.on('request', function(request) {
         connections.forEach((connect)=>{
             connect.sendUTF(json)
         })
+    }
   });
 
   connection.on('close', function(connection) {
