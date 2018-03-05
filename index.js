@@ -36,7 +36,7 @@ wsServer.on('request', function(request) {
       console.log('location change')
       location={
         latitude:message.utf8Data.latitude,
-        longitutde:message.utf8Data.longitude
+        longitude:message.utf8Data.longitude
       }
 
         var obj = {
