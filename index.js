@@ -34,7 +34,8 @@ wsServer.on('request', function(request) {
     console.log(message.utf8Data)
     if(message.utf8Data.latitude!==location.latitude||message.utf8Data.longitude!==location.longitude) {
       console.log('location change')
-      console.log(message.utf8Data.latitude,message.utf8Data.longitude)
+      JSON.parse(message.utf8Data)
+      console.log(message.utf8Data)
       location={
         latitude:message.utf8Data.latitude,
         longitude:message.utf8Data.longitude
