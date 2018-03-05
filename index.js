@@ -30,11 +30,9 @@ wsServer.on('request', function(request) {
   // all messages from users here.
   connection.on('message', function(message) {
     console.log('message received!')
-    console.log("current location --",location)
-    console.log(message.utf8Data)
-    if(message.utf8Data.latitude!==location.latitude||message.utf8Data.longitude!==location.longitude) {
+    var d=JSON.parse(message.utf8Data)
+    if(d.latitude!==location.latitude||d.longitude!==location.longitude) {
       console.log('location change')
-      var d=JSON.parse(message.utf8Data)
       console.log("new location",d)
       console.log("current location array",location)
       location={
