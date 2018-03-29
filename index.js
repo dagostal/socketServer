@@ -30,18 +30,17 @@ wsServer.on('request', function(request) {
   // all messages from users here.
   connection.on('message', function(message) {
     console.log('message received!')
+    console.log(message)
+    if(d.type==="parent"){
+      return;
+    }
+    else {
     var d=JSON.parse(message.utf8Data)
     if(d.latitude!==location.latitude||d.longitude!==location.longitude) {
-      console.log('location change')
-      console.log("new location",d)
-      console.log("current location array",location)
       location={
         latitude:d.latitude,
         longitude:d.longitude
       }
-      console.log("updates location array",location)
-
-
         var obj = {
                  text: message,
                };
