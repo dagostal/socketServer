@@ -31,6 +31,7 @@ wsServer.on('request', function(request) {
   connection.on('message', function(message) {
     console.log('message received!')
     var d=JSON.parse(message.utf8Data)
+    console.log(d)
     if(d.type==="parent"){
       return;
     }
