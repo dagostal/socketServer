@@ -30,12 +30,11 @@ wsServer.on('request', function(request) {
   // all messages from users here.
   connection.on('message', function(message) {
     console.log('message received!')
-    console.log(message)
+    var d=JSON.parse(message.utf8Data)
     if(d.type==="parent"){
       return;
     }
     else {
-    var d=JSON.parse(message.utf8Data)
     if(d.latitude!==location.latitude||d.longitude!==location.longitude) {
       location={
         latitude:d.latitude,
