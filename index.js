@@ -50,6 +50,7 @@ wsServer.on('request', function(request) {
             connect.sendUTF(json)
         })
     }
+  }
   });
 
   connection.on('close', function(connection) {
