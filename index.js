@@ -29,7 +29,7 @@ wsServer.on('request', function(request) {
   // This is the most important callback for us, we'll handle
   // all messages from users here.
   connection.on('message', function(message) {
-    console.log('message received!')
+  //   console.log('message received!')
     var d=JSON.parse(message.utf8Data)
     console.log(d)
     if(d.type==="parent"){
