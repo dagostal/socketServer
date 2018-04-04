@@ -22,8 +22,8 @@ wsServer = new WebSocketServer({
 // WebSocket server
 wsServer.on('request', function(request) {
   console.log('connection requested')
-
   var connection = request.accept(null, request.origin);
+  console.log('connection:',request)
   connections.push(connection)
 
   // This is the most important callback for us, we'll handle
