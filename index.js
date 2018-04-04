@@ -23,35 +23,37 @@ wsServer = new WebSocketServer({
 wsServer.on('request', function(request) {
   console.log('connection requested')
   var connection = request.accept(null, request.origin);
-  console.log('connection:',request)
+  console.log('connection:',request.origin)
+  console.log('headers:',request.headers)
+
   connections.push(connection)
 
   // This is the most important callback for us, we'll handle
   // all messages from users here.
   connection.on('message', function(message) {
-  //   console.log('message received!')
-    var d=JSON.parse(message.utf8Data)
-    console.log(d)
-    if(d.type==="parent"){
-      console.log('parent connected',d)
-      return;
-    }
-    else {
-    if(d.latitude!==location.latitude||d.longitude!==location.longitude) {
-      location={
-        latitude:d.latitude,
-        longitude:d.longitude
-      }
-        var obj = {
-                 text: message,
-               };
-        var json = JSON.stringify({ type:'message', data: obj });
-
-        connections.forEach((connect)=>{
-            connect.sendUTF(json)
-        })
-    }
-  }
+    console.log('message received!')
+  //   var d=JSON.parse(message.utf8Data)
+  //   console.log(d)
+  //   if(d.type==="parent"){
+  //     console.log('parent connected',d)
+  //     return;
+  //   }
+  //   else {
+  //   if(d.latitude!==location.latitude||d.longitude!==location.longitude) {
+  //     location={
+  //       latitude:d.latitude,
+  //       longitude:d.longitude
+  //     }
+  //       var obj = {
+  //                text: message,
+  //              };
+  //       var json = JSON.stringify({ type:'message', data: obj });
+  //
+  //       connections.forEach((connect)=>{
+  //           connect.sendUTF(json)
+  //       })
+  //   }
+  // }
   });
 
   connection.on('close', function(connection) {
