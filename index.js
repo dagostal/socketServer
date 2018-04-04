@@ -33,6 +33,7 @@ wsServer.on('request', function(request) {
     var d=JSON.parse(message.utf8Data)
     console.log(d)
     if(d.type==="parent"){
+      console.log('parent connected',d)
       return;
     }
     else {
