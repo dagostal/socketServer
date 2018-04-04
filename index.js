@@ -23,8 +23,7 @@ wsServer = new WebSocketServer({
 wsServer.on('request', function(request) {
   console.log('connection requested')
   var connection = request.accept(null, request.origin);
-  console.log('connection:',request.origin)
-  console.log('headers:',request.headers)
+  console.log('headers:',request)
 
   connections.push(connection)
 
@@ -32,8 +31,8 @@ wsServer.on('request', function(request) {
   // all messages from users here.
   connection.on('message', function(message) {
     console.log('message received!')
-  //   var d=JSON.parse(message.utf8Data)
-  //   console.log(d)
+    var d=JSON.parse(message.utf8Data)
+    console.log(d)
   //   if(d.type==="parent"){
   //     console.log('parent connected',d)
   //     return;
