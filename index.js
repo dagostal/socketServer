@@ -22,15 +22,14 @@ wsServer = new WebSocketServer({
 // WebSocket server
 wsServer.on('request', function(request) {
   console.log('connection requested')
+  var connection = request.accept(null, request.origin);
+  console.log('headers:',request.origin)
 
+  connections.push(connection)
 
   // This is the most important callback for us, we'll handle
   // all messages from users here.
   connection.on('message', function(message) {
-    var connection = request.accept(null, request.origin);
-    console.log('headers:',request.origin)
-
-    connections.push(connection)
     console.log('message received!')
     var d=JSON.parse(message.utf8Data)
     console.log(d)
