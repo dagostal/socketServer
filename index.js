@@ -23,7 +23,7 @@ wsServer = new WebSocketServer({
 wsServer.on('request', function(request) {
   console.log('connection requested')
   var connection = request.accept(null, request.origin);
-  console.log('headers:',request)
+  console.log('headers:',request.origin)
 
   connections.push(connection)
 
