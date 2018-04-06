@@ -44,7 +44,7 @@ wsServer.on('request', function(request) {
 
       locationDataToParent={
         location1:location1,
-        location2location2
+        location2:location2
       }
 
         var obj = {
