@@ -3,7 +3,13 @@ var http = require('http');
 var port = process.env.PORT
 
 var connections=[]
-var location={
+
+var location1={
+  latitude:null,
+  longitude:null
+}
+
+var location2={
   latitude:null,
   longitude:null
 }
@@ -38,20 +44,20 @@ wsServer.on('request', function(request) {
       return;
     }
     else {
-    if(d.latitude!==location.latitude||d.longitude!==location.longitude) {
-      location={
-        latitude:d.latitude,
-        longitude:d.longitude
-      }
-        var obj = {
-                 text: message,
-               };
-        var json = JSON.stringify({ type:'message', data: obj });
-
-        connections.forEach((connect)=>{
-            connect.sendUTF(json)
-        })
-    }
+    // if(d.latitude!==location.latitude||d.longitude!==location.longitude) {
+    //   location={
+    //     latitude:d.latitude,
+    //     longitude:d.longitude
+    //   }
+    //     var obj = {
+    //              text: message,
+    //            };
+    //     var json = JSON.stringify({ type:'message', data: obj });
+    //
+    //     connections.forEach((connect)=>{
+    //         connect.sendUTF(json)
+    //     })
+    // }
   }
   });
 
