@@ -41,7 +41,6 @@ wsServer.on('request', function(request) {
       location1=messageData.location1
       location2=messageData.location2
 
-    if(messageData.location1!==location1||messageData.location2!==location2) {
 
       locationDataToParent={
         location1:location1,
@@ -56,7 +55,6 @@ wsServer.on('request', function(request) {
         connections.forEach((connect)=>{
             connect.sendUTF(json)
         })
-    }
 
   });
 
