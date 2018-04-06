@@ -29,7 +29,6 @@ wsServer = new WebSocketServer({
 wsServer.on('request', function(request) {
   console.log('connection requested')
   var connection = request.accept(null, request.origin);
-  console.log('headers:',request.origin)
 
   connections.push(connection)
 
@@ -37,27 +36,32 @@ wsServer.on('request', function(request) {
   // all messages from users here.
   connection.on('message', function(message) {
     console.log('message received!')
-    var d=JSON.parse(message.utf8Data)
-    console.log(d)
-    if(d.type==="parent"){
+    var messageData=JSON.parse(message.utf8Data)
+    console.log(messageData)
+    if(messageData.type==="parent"){
       console.log('parent connected',d)
       return;
     }
     else {
-    // if(d.latitude!==location.latitude||d.longitude!==location.longitude) {
-    //   location={
-    //     latitude:d.latitude,
-    //     longitude:d.longitude
-    //   }
-    //     var obj = {
-    //              text: message,
-    //            };
-    //     var json = JSON.stringify({ type:'message', data: obj });
-    //
-    //     connections.forEach((connect)=>{
-    //         connect.sendUTF(json)
-    //     })
-    // }
+      location1=messageData.location1
+      location2=messageData.location2
+
+    if(messageData.location1!==location1||messageData.location2!==location2) {
+
+      locationDataToParent={
+        location1:location1,
+        location2location2
+      }
+
+        var obj = {
+                 text: message,
+               };
+        var json = JSON.stringify({ type:'message', data: locationDataToParent });
+
+        connections.forEach((connect)=>{
+            connect.sendUTF(json)
+        })
+    }
   }
   });
 
