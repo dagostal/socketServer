@@ -38,11 +38,6 @@ wsServer.on('request', function(request) {
     console.log('message received!')
     var messageData=JSON.parse(message.utf8Data)
     console.log(messageData)
-    if(messageData.type==="parent"){
-      console.log('parent connected',d)
-      return;
-    }
-    else {
       location1=messageData.location1
       location2=messageData.location2
 
@@ -62,7 +57,7 @@ wsServer.on('request', function(request) {
             connect.sendUTF(json)
         })
     }
-  }
+
   });
 
   connection.on('close', function(connection) {
