@@ -36,6 +36,9 @@ wsServer.on('request', function(request) {
   // all messages from users here.
   connection.on('message', function(message) {
     console.log('message received!')
+    if(!message.latitude){
+      return;
+    } else {
     var messageData=JSON.parse(message.utf8Data)
     console.log(messageData)
     var latitude=messageData.latitude
@@ -54,6 +57,7 @@ wsServer.on('request', function(request) {
             connect.sendUTF(json)
         })
         console.log("connections:",connections.length)
+      }
   });
 
   connection.on('close', function(connection) {
