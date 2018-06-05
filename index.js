@@ -4,16 +4,6 @@ var port = process.env.PORT
 
 var connections=[]
 
-var location1={
-  latitude:null,
-  longitude:null
-}
-
-var location2={
-  latitude:null,
-  longitude:null
-}
-
 var server = http.createServer(function(request, response) {
   // process HTTP request. Since we're writing just WebSockets
   // server we don't have to implement anything.
@@ -36,9 +26,7 @@ wsServer.on('request', function(request) {
   // all messages from users here.
   connection.on('message', function(message) {
     console.log('message received!')
-    if(!message.latitude){
-      return;
-    } else {
+    if(message.type==="location"){
     var messageData=JSON.parse(message.utf8Data)
     console.log(messageData)
     var latitude=messageData.latitude
