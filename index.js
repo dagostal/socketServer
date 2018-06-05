@@ -26,8 +26,9 @@ wsServer.on('request', function(request) {
   // all messages from users here.
   connection.on('message', function(message) {
     console.log('message received!')
-    if(message.type==="location"){
+
     var messageData=JSON.parse(message.utf8Data)
+    if(messageData.type==="location"){
     console.log(messageData)
     var latitude=messageData.latitude
     var longitude=messageData.longitude
