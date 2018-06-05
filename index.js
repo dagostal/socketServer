@@ -38,24 +38,22 @@ wsServer.on('request', function(request) {
     console.log('message received!')
     var messageData=JSON.parse(message.utf8Data)
     console.log(messageData)
-      location1=messageData.location1
-      location2=messageData.location2
-
-
+    var latitude=messageData.latitude
+    var longitude=messageData.longitude
+    var busId=messageData.busId
       locationDataToParent={
-        location1:location1,
-        location2:location2
+        latitude:location1,
+        longitude:location2,
+        busId:busId
       }
 
-        var obj = {
-                 text: message,
-               };
+
         var json = JSON.stringify({ type:'message', data: locationDataToParent });
 
         connections.forEach((connect)=>{
             connect.sendUTF(json)
         })
-
+        console.log("connections:",connections.length)
   });
 
   connection.on('close', function(connection) {
