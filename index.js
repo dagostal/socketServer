@@ -42,8 +42,8 @@ wsServer.on('request', function(request) {
     var longitude=messageData.longitude
     var busId=messageData.busId
       locationDataToParent={
-        latitude:location1,
-        longitude:location2,
+        latitude:latitude,
+        longitude:longitude,
         busId:busId
       }
 
