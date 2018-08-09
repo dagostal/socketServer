@@ -4,6 +4,7 @@ var port = process.env.PORT
 
 var bluetoothConnections=[]
 
+
 var server = http.createServer(function(request, response) {
   // process HTTP request. Since we're writing just WebSockets
   // server we don't have to implement anything.
@@ -31,16 +32,22 @@ wsServer.on('request', function(request) {
       tagId:data.uuid,
       count:0
     }
-    console.log(obj.tagId)
-    if(bluetoothConnections.indexOf(obj.tagId)===-1){
-      console.log("child is not on the bus")
+
+
+    var existingConnection = bluetoothConnections.find(function(connection) {
+      return connection.id === obj.tagId;
+    });
+
+    if(existingConnection){ //if this connection already exists...
+      console.log("connection exists!")
+    } else {   //if there is no exisitng connection...
+      console.log("connection does not exist!")
       bluetoothConnections.push(obj)
-      console.log(bluetoothConnections)
-    } else {
-      console.log("child is on the bus")
     }
+
+
   })
-  });
+});
 
 //   connection.on('close', function(connection) {
 //     // close user connection
