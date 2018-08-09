@@ -34,6 +34,7 @@ wsServer.on('request', function(request) {
     if(bluetoothConnections.indexOf(obj.tagId)===-1){
       console.log("child is not on the bus")
       bluetoothConnections.push(obj)
+      console.log(bluetoothConnections)
     } else {
       console.log("child is on the bus")
     }
