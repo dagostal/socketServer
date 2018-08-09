@@ -35,7 +35,7 @@ wsServer.on('request', function(request) {
 
 
     var existingConnection = bluetoothConnections.find(function(connection) {
-      return connection.id === obj.tagId;
+      return connection.tagId === obj.tagId;
     });
 
     if(existingConnection){ //if this connection already exists...
